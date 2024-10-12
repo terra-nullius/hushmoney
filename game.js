@@ -26,55 +26,62 @@ function updateUI() {
     }
 }
 
-// Resource gathering functions
-function gatherWood() {
-    const amount = Math.floor(Math.random() * gameState.skills.woodcutting) + 1;
-    gameState.resources.wood += amount;
-    gameState.skills.woodcutting += 0.1;
+// Function to calculate skill increase
+function calculateSkillIncrease(currentSkill) {
+    if (currentSkill >= 100) return 0;
+    
+    let baseIncrease = 0.1;
+    
+    if (currentSkill >= 90) {
+        return baseIncrease / 100; // 10 times slower after 90
+    } else if (currentSkill >= 40) {
+        // Gradually decrease skill gain from 40 to 90
+        let factor = 1 - (currentSkill - 40) / 50;
+        return baseIncrease * Math.max(factor, 0.1); // Ensure it's never less than 1/10th of base
+    }
+    
+    return baseIncrease;
+}
+
+// Generic resource gathering function
+function gatherResource(resource, skill) {
+    gameState.resources[resource] += 1;
+    let skillIncrease = calculateSkillIncrease(gameState.skills[skill]);
+    gameState.skills[skill] = Math.min(gameState.skills[skill] + skillIncrease, 100);
     updateUI();
 }
 
+// Resource gathering functions
+function gatherWood() {
+    gatherResource('wood', 'woodcutting');
+}
+
 function mineStone() {
-    const amount = Math.floor(Math.random() * gameState.skills.mining) + 1;
-    gameState.resources.stone += amount;
-    gameState.skills.mining += 0.1;
-    updateUI();
+    gatherResource('stone', 'mining');
 }
 
 function mineIron() {
     if (gameState.skills.mining >= 5) {
-        const amount = Math.floor(Math.random() * (gameState.skills.mining / 2)) + 1;
-        gameState.resources.iron += amount;
-        gameState.skills.mining += 0.2;
-        updateUI();
+        gatherResource('iron', 'mining');
     } else {
         alert("You need a mining skill of 5 to mine iron!");
     }
 }
 
 function gatherClay() {
-    const amount = Math.floor(Math.random() * gameState.skills.foraging) + 1;
-    gameState.resources.clay += amount;
-    gameState.skills.foraging += 0.1;
-    updateUI();
+    gatherResource('clay', 'foraging');
 }
 
 function mineCopper() {
     if (gameState.skills.mining >= 3) {
-        const amount = Math.floor(Math.random() * (gameState.skills.mining / 1.5)) + 1;
-        gameState.resources.copper += amount;
-        gameState.skills.mining += 0.15;
-        updateUI();
+        gatherResource('copper', 'mining');
     } else {
         alert("You need a mining skill of 3 to mine copper!");
     }
 }
 
 function gatherFood() {
-    const amount = Math.floor(Math.random() * gameState.skills.farming) + 1;
-    gameState.resources.food += amount;
-    gameState.skills.farming += 0.1;
-    updateUI();
+    gatherResource('food', 'farming');
 }
 
 // Initialize UI
