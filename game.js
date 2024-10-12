@@ -122,11 +122,11 @@ function gatherWood() {
     gatherResource('wood', 'woodcutting');
 }
 
-function mineStone() {
+function gatherStone() {  // Changed from mineStone to gatherStone
     gatherResource('stone', 'mining');
 }
 
-function mineIron() {
+function gatherIron() {  // Changed from mineIron to gatherIron
     if (gameState.skills.mining >= 5) {
         gatherResource('iron', 'mining');
     } else {
@@ -138,7 +138,7 @@ function gatherClay() {
     gatherResource('clay', 'foraging');
 }
 
-function mineCopper() {
+function gatherCopper() {  // Changed from mineCopper to gatherCopper
     if (gameState.skills.mining >= 3) {
         gatherResource('copper', 'mining');
     } else {
@@ -155,10 +155,10 @@ updateUI();
 
 // Add event listeners to buttons
 document.getElementById('gatherWood').addEventListener('click', gatherWood);
-document.getElementById('mineStone').addEventListener('click', mineStone);
-document.getElementById('mineIron').addEventListener('click', mineIron);
+document.getElementById('gatherStone').addEventListener('click', gatherStone);  // Changed from mineStone to gatherStone
+document.getElementById('gatherIron').addEventListener('click', gatherIron);  // Changed from mineIron to gatherIron
 document.getElementById('gatherClay').addEventListener('click', gatherClay);
-document.getElementById('mineCopper').addEventListener('click', mineCopper);
+document.getElementById('gatherCopper').addEventListener('click', gatherCopper);  // Changed from mineCopper to gatherCopper
 document.getElementById('gatherFood').addEventListener('click', gatherFood);
 
 // Start stamina regeneration
