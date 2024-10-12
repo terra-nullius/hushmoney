@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wurm-Inspired Incremental Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .game-container { display: flex; flex-wrap: wrap; }
+        .resources, .actions, .skills { margin: 10px; padding: 10px; border: 1px solid #ccc; }
+        button { margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="resources">
+            <h2>Resources</h2>
+            <p>Wood: <span id="wood">0</span></p>
+            <p>Stone: <span id="stone">0</span></p>
+            <p>Iron: <span id="iron">0</span></p>
+            <p>Clay: <span id="clay">0</span></p>
+            <p>Copper: <span id="copper">0</span></p>
+            <p>Food: <span id="food">0</span></p>
+        </div>
+        <div class="actions">
+            <h2>Actions</h2>
+            <button id="gatherWood">Gather Wood</button>
+            <button id="mineStone">Mine Stone</button>
+            <button id="mineIron">Mine Iron</button>
+            <button id="gatherClay">Gather Clay</button>
+            <button id="mineCopper">Mine Copper</button>
+            <button id="gatherFood">Gather Food</button>
+        </div>
+        <div class="skills">
+            <h2>Skills</h2>
+            <p>Woodcutting: <span id="woodcutting">1</span></p>
+            <p>Mining: <span id="mining">1</span></p>
+            <p>Foraging: <span id="foraging">1</span></p>
+            <p>Farming: <span id="farming">1</span></p>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
